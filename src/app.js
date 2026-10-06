@@ -27,6 +27,13 @@ app.use(express.urlencoded({ extended: true }));
 // Static files
 app.use("/uploads", express.static("uploads"));
 
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "NMQ Backend is running",
+  });
+});add
+
 // Health check
 app.get("/health", (req, res) => {
   res.status(200).json({
