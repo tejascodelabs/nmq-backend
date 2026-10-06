@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
     success: true,
     message: "NMQ Backend is running",
   });
-});add
+});
 
 // Health check
 app.get("/health", (req, res) => {
