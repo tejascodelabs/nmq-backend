@@ -6,22 +6,6 @@ import router from "./routes/index.js";
 
 const app = express();
 
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const distPath = path.join(__dirname, "../dist");
-
-// Static React files
-app.use(express.static(distPath));
-
-// React Router fallback
-app.get("/{*splat}", (req, res) => {
-  res.sendFile(path.join(distPath, "index.html"));
-});
-
 // Security
 app.use(helmet());
 
@@ -43,15 +27,15 @@ app.use(express.urlencoded({ extended: true }));
 // Static files
 app.use("/uploads", express.static("uploads"));
 
-// app.get("/", (req, res) => {
-//   res.status(200).json({
-//     success: true,
-//     message: "NMQ Backend is running",
-//   });
-// });
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "NMQ Backend is running",
+  });
+});
 
 // Health check
-app.get("/api/health", (req, res) => {
+app.get("/health", (req, res) => {
   res.status(200).json({
     success: true,
     message: "Server is running",
